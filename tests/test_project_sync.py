@@ -64,7 +64,7 @@ class ProjectSyncTests(unittest.TestCase):
     def test_metadata_is_optional_and_parsed_when_present(self):
         self.assertEqual(parse_metadata("plain text", "PROJECT_SYNC"), {})
         body = """text
-<!-- REPOOPS
+<!-- PROJECT_SYNC
 project=Platform
 status=In Progress
 operator=Automation
