@@ -49,7 +49,7 @@ def validate_config(cfg: dict[str, Any]) -> None:
     for repo in repos:
         if not isinstance(repo, str) or repo.count("/") != 1:
             raise ValueError(f"invalid repository: {repo}")
-    marker = cfg.get("metadata_marker", "REPOOPS")
+    marker = cfg.get("metadata_marker", "PROJECT_SYNC")
     if not isinstance(marker, str) or not re.fullmatch(r"[A-Z0-9_]{2,40}", marker):
         raise ValueError("metadata_marker invalid")
     fields = cfg.get("fields")
@@ -391,7 +391,7 @@ class RepoOpsSync:
             ] = str(node["id"])
 
         stats = SyncStats()
-        marker = str(self.cfg.get("metadata_marker", "REPOOPS"))
+        marker = str(self.cfg.get("metadata_marker", "PROJECT_SYNC"))
 
         for repo in self.cfg["repositories"]:
             for issue in list_issues(self.api, repo):
