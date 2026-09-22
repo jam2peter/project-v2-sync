@@ -1,0 +1,48 @@
+{
+  "project_sync": {
+    "project_owner": {
+      "type": "user",
+      "login": "example-owner"
+    },
+    "project_number": 1,
+    "repositories": [
+      "example-owner/repository-a",
+      "example-owner/repository-b"
+    ],
+    "metadata_marker": "PROJECT_SYNC",
+    "fields": {
+      "status": {
+        "name": "Status",
+        "metadata_key": "status",
+        "default_open": "Todo",
+        "closed": "Done"
+      },
+      "project": {
+        "name": "Project",
+        "metadata_key": "project"
+      },
+      "repository": {
+        "name": "Repository",
+        "auto_create_text": true
+      },
+      "operator": {
+        "name": "Operator",
+        "metadata_key": "operator",
+        "default": "Unassigned",
+        "auto_create_text": true
+      },
+      "start_date": {
+        "name": "Start date",
+        "metadata_key": "start_date"
+      },
+      "target_date": {
+        "name": "Target date",
+        "metadata_key": "target_date"
+      }
+    },
+    "operator_labels": {
+      "operator:automation": "Automation",
+      "operator:human": "Human"
+    }
+  }
+}
