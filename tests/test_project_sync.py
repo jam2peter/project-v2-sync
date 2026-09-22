@@ -59,10 +59,10 @@ class ProjectSyncTests(unittest.TestCase):
 
     def test_example_config_is_valid(self):
         self.assertEqual(self.cfg["project_number"], 1)
-        self.assertEqual(self.cfg["metadata_marker"], "REPOOPS")
+        self.assertEqual(self.cfg["metadata_marker"], "PROJECT_SYNC")
 
     def test_metadata_is_optional_and_parsed_when_present(self):
-        self.assertEqual(parse_metadata("plain text", "REPOOPS"), {})
+        self.assertEqual(parse_metadata("plain text", "PROJECT_SYNC"), {})
         body = """text
 <!-- REPOOPS
 project=Platform
@@ -71,7 +71,7 @@ operator=Automation
 start_date=2026-09-22
 -->
 """
-        meta = parse_metadata(body, "REPOOPS")
+        meta = parse_metadata(body, "PROJECT_SYNC")
         self.assertEqual(meta["project"], "Platform")
         self.assertEqual(meta["status"], "In Progress")
         self.assertEqual(meta["operator"], "Automation")
