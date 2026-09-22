@@ -1,0 +1,28 @@
+name: Project V2 Sync
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17,47 * * * *'
+
+concurrency:
+  group: project-v2-sync
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      PROJECT_SYNC_TOKEN: ${{ secrets.PROJECT_SYNC_TOKEN }}
+      PROJECT_SYNC_CONFIG: ${{ vars.PROJECT_SYNC_CONFIG || 'project-sync.json' }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate token
+        run: test -n "${PROJECT_SYNC_TOKEN:-}"
+      - name: Reconcile configured Issues into Project V2
+        run: python3 scripts/project_sync.py --config "$PROJECT_SYNC_CONFIG"
